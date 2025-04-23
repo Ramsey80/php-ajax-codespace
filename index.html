@@ -37,6 +37,7 @@
   var counter = 0;
 
 function getRandomQuote(){
+  var fonts = ["Qwitcher Grypen","Tulpen One","Shadows Into Light"];
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'random_quotes.php',true);
   xhr.onload = function(){
