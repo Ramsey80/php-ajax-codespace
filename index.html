@@ -3,14 +3,35 @@
 <head>
   <meta charset="UTF-8" />
   <title>AJAX with PHP</title>
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Tulpen+One&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Qwitcher+Grypen:wght@700&display=swap');
+
+    #quoteContainer {
+            display: none;
+        }
+
+        /* CSS for the fade-in animation */
+        .fade-in {
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+  </style>
 </head>
 <body>
-  <h1>AJAX Test</h1>
   
-  <div id="result"></div>
+  <h1>AJAX Quotes</h1>
+  <button onclick="getRandomQuote()">Get Random Quote</button>
+  <div id="quote-container">Quote goes here</div>
 
   <script src="script.js"></script>
-  <button onclick="getRandomQuote()">Get Random Quote</button>
+
 <script>
 function getRandomQuote(){
   var xhr = new XMLHttpRequest();
@@ -18,8 +39,12 @@ function getRandomQuote(){
   xhr.onload = function(){
     //code to run on return of data
     if(xhr.status == 200){//data is good, show it
-      alert(xhr.responseText);
+      //alert(xhr.responseText);
       document.querySelector("#quote-container").innerText = xhr.responseText;
+      let el = document.querySelector("#quote-container");
+      el.innerText = xhr.responseText;
+      el.style.display="block";
+      el.classList.add("fade-in");
     }else{//not good?
       alert("No good data returned");
     }
