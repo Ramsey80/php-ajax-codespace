@@ -46,7 +46,9 @@ function getRandomQuote(){
       el.style.display="block";
       el.classList.add("fade-in");
 
-      setTimeout(function(){},1000);
+      setTimeout(function(){
+        el.classList.remove("fade-in");
+      },1000);
     }else{//not good?
       alert("No good data returned");
     }
