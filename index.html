@@ -6,9 +6,41 @@
 </head>
 <body>
   <h1>AJAX Test</h1>
-  <button id="fetchData">Fetch Data</button>
+  
   <div id="result"></div>
 
   <script src="script.js"></script>
+  <button onclick="getRandomQuote()">Get Random Quote</button>
+<script>
+function getRandomQuote(){
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'random_quotes.php',true);
+  xhr.onload = function(){
+    //code to run on return of data
+    if(xhr.status == 200){//data is good, show it
+      alert(xhr.responseText);
+      document.querySelector("#quote-container").innerText = xhr.responseText;
+    }else{//not good?
+      alert("No good data returned");
+    }
+  };
+    xhr.onerror = function(){
+      //code to run on error
+      alert("Ajax Error");
+    };
+    xhr.send();
+   
+}
+function displayRandomQuote(){
+      //will load quote on page load and at intervals
+
+      //run on initial page load
+      getRandomQuote();
+
+      setInterval(getRandomQuote,5000);
+    }
+    //will run on page load then every 5 seconds
+    displayRandomQuote();
+</script>
 </body>
 </html>
